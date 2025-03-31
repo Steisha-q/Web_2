@@ -3,48 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Реєстрація / Вхід</title>
+    <title>Реєстрація</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="../script.js"></script>
+    <script src="../registration.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="form-container">
-            <h2>Реєстрація</h2>
-            <form id="registrationForm">
-                <label for="username">Логін:</label>
-                <input type="text" id="username" name="username" required>
-                
-                <label for="email">Електронна пошта:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required>
-
-                <button type="submit">Зареєструватися</button>
-            </form>
-            <p>Уже є акаунт? <a href="#" id="switchToLogin">Увійти</a></p>
-        </div>
-        
-        <div class="form-container" id="loginFormContainer" style="display: none;">
-            <h2>Вхід</h2>
-            <form id="loginForm">
-                <label for="loginUsername">Логін:</label>
-                <input type="text" id="loginUsername" name="username" required>
-                
-                <label for="loginPassword">Пароль:</label>
-                <input type="password" id="loginPassword" name="password" required>
-
-                <button type="submit">Увійти</button>
-            </form>
-            <p>Немає акаунта? <a href="#" id="switchToRegister">Зареєструватися</a></p>
-        </div>
-    </div>
-
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Головна</a>
+            <a href="cart.html" class="nav-item"><i class="fas fa-shopping-cart"></i> Кошик</a>
+            <a href="registration.html" class="nav-item"><i class="fas fa-user"></i> Вхід</a>
+            <a href="admin.html" class="nav-item" id="admin-link"><i class="fas fa-cogs"></i> Адмін</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Реєстрація</h1>
+        <form class="signup-form">
+            <label for="username">Логін:</label>
+            <input type="text" id="username" name="username" required placeholder="Введіть логін">
+            
+            <label for="email">Електронна пошта:</label>
+            <input type="email" id="email" name="email" required placeholder="Введіть вашу пошту">
+            
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required placeholder="Введіть пароль">
+            
+            <label for="confirm_password">Підтвердження паролю:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required placeholder="Підтвердіть пароль">
+            
+            <button type="submit">Зареєструватися</button>
+            <p>Вже є акаунт? <a href="login.html">Увійти</a></p>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2025 Electronics Store. All rights reserved.</p>
+    </footer>
 </body>
 </html>
-
-
-
-

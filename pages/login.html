@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кошик</title>
+    <title>Вхід</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="../cart.js" defer></script>
+    <script src="../login.js" defer></script>
 </head>
 <body>
     <header>
@@ -15,26 +15,21 @@
             <a href="cart.html" class="nav-item"><i class="fas fa-shopping-cart"></i> Кошик</a>
             <a href="registration.html" class="nav-item"><i class="fas fa-user"></i> Вхід</a>
             <a href="admin.html" class="nav-item" id="admin-link"><i class="fas fa-cogs"></i> Адмін</a>
-
         </nav>
     </header>
     <main>
-        <h1>Ваш кошик</h1>
-        <div id="cart-container" class="cart-container"></div>
-
-        <aside class="order-form">
-            <h2>Оформлення замовлення</h2>
-            <p id="total-price" class="total-price">Загальна сума: 0 грн</p>
-            <form id="checkout-form">
-                <label for="customer-name">Ім'я</label>
-                <input type="text" id="customer-name" placeholder="Ваше ім'я" required>
-        
-                <label for="customer-phone">Телефон</label>
-                <input type="tel" id="customer-phone" placeholder="+380123456789" required>
-        
-                <button type="submit">Оформити замовлення</button>
-            </form>
-        </aside>
+        <h1>Вхід</h1>
+        <form class="login-form">
+            <label for="email">Електронна пошта:</label>
+            <input type="email" id="email" name="email" required placeholder="Введіть вашу пошту">
+            
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required placeholder="Введіть пароль">
+            
+            <button type="submit">Увійти</button>
+            <p>Немає акаунту? <a href="registration.html">Зареєструватися</a></p>
+        </form>
+        <button id="logout-btn">Вийти</button>
     </main>
     <footer>
         <p>&copy; 2025 Electronics Store. All rights reserved.</p>

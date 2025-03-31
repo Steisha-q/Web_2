@@ -3,23 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Панель адміністратора</title>
+    <title>Адмін-панель</title>
     <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="../admin_script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Панель адміністратора</h1>
+        <nav class="navbar">
+            <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Головна</a>
+            <a href="cart.html" class="nav-item"><i class="fas fa-shopping-cart"></i> Кошик</a>
+            <a href="registration.html" class="nav-item"><i class="fas fa-user"></i> Вхід</a>
+            <a href="admin.html" class="nav-item"><i class="fas fa-cogs"></i> Адмін</a>
+        </nav>
     </header>
-    
-    <main class="admin-container">
-        <section id="categories">
-            <h2>Керування категоріями</h2>
-            <input type="text" id="categoryName" placeholder="Назва категорії">
-            <button onclick="addCategory()">Додати категорію</button>
-            <ul id="categoryList"></ul>
+
+    <main>
+        <h1>Адміністративна панель</h1>
+
+        <!-- Форма для додавання категорії -->
+        <section id="add-category">
+            <h2>Додати категорію</h2>
+            <form id="category-form">
+                <label for="category-name">Назва категорії:</label>
+                <input type="text" id="category-name" required>
+
+                <button type="submit">Додати категорію</button>
+            </form>
         </section>
-        
+
+        <!-- Форма для видалення категорії -->
+        <section id="delete-category">
+            <h2>Видалити категорію</h2>
+            <form id="delete-category-form">
+                <label for="category-delete-select">Виберіть категорію для видалення:</label>
+                <select id="category-delete-select">
+                    <!-- Категорії будуть додаватися динамічно за допомогою JavaScript -->
+                </select>
+                <button type="submit">Видалити категорію</button>
+            </form>
+        </section>
+
+        <!-- Форма для додавання товару -->
+        <section id="add-product">
+            <h2>Додати товар</h2>
+            <form id="product-form">
+                <label for="product-name">Назва товару:</label>
+                <input type="text" id="product-name" required>
+            
+                <label for="category-select">Категорія:</label>
+                <select id="category-select">
+                    <!-- Категорії будуть додаватися динамічно за допомогою JavaScript -->
+                </select>
+            
+                <label for="product-price">Ціна:</label>
+                <input type="number" id="product-price" required>
+            
+                <label for="product-description">Короткий опис товару:</label>
+                <textarea id="product-description" required></textarea>
+            
+                <label for="product-image">Фото товару:</label>
+                <input type="file" id="product-image" accept="image/*">
+            
+                <button type="submit">Додати товар</button>
+            </form>
+        </section>
     </main>
+
+    <footer>
+        <p>&copy; 2025 Electronics Store. All rights reserved.</p>
+    </footer>
 </body>
 </html>
