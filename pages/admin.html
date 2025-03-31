@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель адміністратора</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../admin_script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Панель адміністратора</h1>
+    </header>
+    
+    <main class="admin-container">
+        <section id="categories">
+            <h2>Керування категоріями</h2>
+            <input type="text" id="categoryName" placeholder="Назва категорії">
+            <button onclick="addCategory()">Додати категорію</button>
+            <ul id="categoryList"></ul>
+        </section>
+        
+    </main>
+</body>
+</html>

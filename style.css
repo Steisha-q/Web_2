@@ -1,0 +1,148 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h2 {
+    color: #333;
+}
+
+.top-bar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar button {
+    background-color: #ff9f00;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.top-bar button:hover {
+    background-color: #e68a00;
+}
+
+.top-bar input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.top-bar .icon-link {
+    margin-left: 1px;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.top-bar .icon-link:hover {
+    color: #ff9f00;
+}
+
+footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #222;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    margin-top: auto; 
+    font-size: 20px; 
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 2px solid #ddd;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    color: #ff9f00;
+}
+
+.container {
+    display: flex;
+}
+
+.products {
+    flex: 1;
+    padding: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.product {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+.product p {
+    margin: 15px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar input {
+        width: 200px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
