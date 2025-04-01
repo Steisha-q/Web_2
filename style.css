@@ -449,4 +449,8 @@ footer {
     .navbar .hamburger {
         display: block;
     }
+
+    .logo {
+        display: none;
+    }
 }
