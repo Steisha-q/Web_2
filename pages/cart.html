@@ -11,10 +11,12 @@
 <body>
     <header>
         <nav class="navbar">
+            <button class="hamburger" id="hamburger-btn"><i class="fas fa-bars"></i> Меню</button>
             <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Головна</a>
             <a href="cart.html" class="nav-item"><i class="fas fa-shopping-cart"></i> Кошик</a>
             <a href="registration.html" class="nav-item"><i class="fas fa-user"></i> Вхід</a>
             <a href="admin.html" class="nav-item" id="admin-link"><i class="fas fa-cogs"></i> Адмін</a>
+            <a id="logout-btn" class="nav-item"><i class="fas fa-sign-out-alt"></i> Вийти</a>
 
         </nav>
     </header>
@@ -39,5 +41,13 @@
     <footer>
         <p>&copy; 2025 Electronics Store. All rights reserved.</p>
     </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger-btn');
+        const navbar = document.querySelector('.navbar');
+
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

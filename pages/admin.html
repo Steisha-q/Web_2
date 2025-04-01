@@ -11,17 +11,18 @@
 <body>
     <header>
         <nav class="navbar">
+            <button class="hamburger" id="hamburger-btn"><i class="fas fa-bars"></i> Меню</button>
             <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Головна</a>
             <a href="cart.html" class="nav-item"><i class="fas fa-shopping-cart"></i> Кошик</a>
             <a href="registration.html" class="nav-item"><i class="fas fa-user"></i> Вхід</a>
             <a href="admin.html" class="nav-item"><i class="fas fa-cogs"></i> Адмін</a>
+            <a id="logout-btn" class="nav-item"><i class="fas fa-sign-out-alt"></i> Вийти</a>
         </nav>
     </header>
 
     <main>
-        <h1>Адміністративна панель</h1>
+        <h1>Панель адміністратора</h1>
 
-        <!-- Форма для додавання категорії -->
         <section id="add-category">
             <h2>Додати категорію</h2>
             <form id="category-form">
@@ -32,19 +33,16 @@
             </form>
         </section>
 
-        <!-- Форма для видалення категорії -->
         <section id="delete-category">
             <h2>Видалити категорію</h2>
             <form id="delete-category-form">
                 <label for="category-delete-select">Виберіть категорію для видалення:</label>
                 <select id="category-delete-select">
-                    <!-- Категорії будуть додаватися динамічно за допомогою JavaScript -->
                 </select>
                 <button type="submit">Видалити категорію</button>
             </form>
         </section>
 
-        <!-- Форма для додавання товару -->
         <section id="add-product">
             <h2>Додати товар</h2>
             <form id="product-form">
@@ -53,7 +51,6 @@
             
                 <label for="category-select">Категорія:</label>
                 <select id="category-select">
-                    <!-- Категорії будуть додаватися динамічно за допомогою JavaScript -->
                 </select>
             
                 <label for="product-price">Ціна:</label>
@@ -73,5 +70,13 @@
     <footer>
         <p>&copy; 2025 Electronics Store. All rights reserved.</p>
     </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger-btn');
+        const navbar = document.querySelector('.navbar');
+
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

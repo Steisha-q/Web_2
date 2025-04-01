@@ -176,21 +176,6 @@ const filterProducts = (categoryName) => {
 
 window.addEventListener('load', loadCategoriesForMainPage);
 
-document.addEventListener("DOMContentLoaded", () => {
-    const adminLink = document.getElementById("admin-link");
-
-    if (adminLink) {
-        adminLink.addEventListener("click", function (event) {
-            const isAdmin = localStorage.getItem("isAdmin") === "true";
-
-            if (!isAdmin) {
-                event.preventDefault();
-                alert("Ви не адмін!");
-            }
-        });
-    }
-});
-
 const updateProductList = () => {
     const productsContainer = document.getElementById('products-container');
     if (!productsContainer) return;
@@ -230,5 +215,26 @@ const addToCart = (product) => {
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`Товар "${product.name}" додано до кошика!`);
 };
+
+document.getElementById("logout-btn").addEventListener("click", function () {
+    localStorage.removeItem("currentUser");
+    alert("Ви вийшли!");
+    window.location.href = "login.html";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const adminLink = document.getElementById("admin-link");
+
+    if (adminLink) {
+        adminLink.addEventListener("click", function (event) {
+            const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+            if (!isAdmin) {
+                event.preventDefault();
+                alert("Доступ лише для адміна!");
+            }
+        });
+    }
+});
 
 window.onload = loadData;

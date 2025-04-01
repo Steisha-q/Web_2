@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("isAdmin", "true");
             localStorage.setItem("loggedInUser", email);
             alert("Вхід як адміністратор успішний!");
+            window.location.href = "admin.html";
             return;
         }
 
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("isAdmin", "false");
         localStorage.setItem("loggedInUser", email);
         alert("Вхід успішний!");
+        window.location.href = "index.html";
     });
 });
 
@@ -47,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!isAdmin) {
                 event.preventDefault();
-                alert("Ви не адмін!");
+                alert("Доступ лише для адміна!");
             }
         });
     }

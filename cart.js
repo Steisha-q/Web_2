@@ -5,6 +5,7 @@ const updateCartList = () => {
 
     if (cart.length === 0) {
         cartContainer.innerHTML = '<p>Кошик порожній!</p>';
+        updateTotalPrice();
         return;
     }
 
@@ -26,12 +27,13 @@ const updateCartList = () => {
 
         cartContainer.appendChild(cartItem);
     });
+    updateTotalPrice();
 };
 
 const removeFromCart = (productId) => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const updatedCart = cart.filter(product => product.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(product => product.id !== productId);
+    localStorage.setItem('cart', JSON.stringify(cart));
     updateCartList();
 };
 
@@ -80,5 +82,26 @@ if (checkoutForm) {
         }
     });
 }
+
+document.getElementById("logout-btn").addEventListener("click", function () {
+    localStorage.removeItem("currentUser");
+    alert("Ви вийшли!");
+    window.location.href = "login.html";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const adminLink = document.getElementById("admin-link");
+
+    if (adminLink) {
+        adminLink.addEventListener("click", function (event) {
+            const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+            if (!isAdmin) {
+                event.preventDefault();
+                alert("Доступ лише для адміна!");
+            }
+        });
+    }
+});
 
 document.addEventListener('DOMContentLoaded', updateCartList);

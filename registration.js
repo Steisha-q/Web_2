@@ -39,8 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!isAdmin) {
                 event.preventDefault();
-                alert("Ви не адмін!");
+                alert("Доступ лише для адміна!");
             }
         });
     }
+});
+
+document.getElementById("logout-btn").addEventListener("click", function () {
+    localStorage.removeItem("currentUser");
+    alert("Ви вийшли!");
+    window.location.href = "login.html";
 });
