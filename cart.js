@@ -1,4 +1,3 @@
-// Функція для відображення товарів у кошику
 const updateCartList = () => {
     const cartContainer = document.getElementById('cart-container');
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -20,7 +19,6 @@ const updateCartList = () => {
             <button class="remove-from-cart">Видалити</button>
         `;
 
-        // Обробник натискання на кнопку видалення
         const removeButton = cartItem.querySelector('.remove-from-cart');
         removeButton.addEventListener('click', () => {
             removeFromCart(product.id);
@@ -30,7 +28,6 @@ const updateCartList = () => {
     });
 };
 
-// Функція видалення товару з кошика
 const removeFromCart = (productId) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const updatedCart = cart.filter(product => product.id !== productId);
@@ -45,7 +42,6 @@ const updateTotalPrice = () => {
     totalPriceElement.textContent = `Загальна сума: ${totalPrice.toFixed(2)} грн`;
 };
 
-// Оновлення кошика
 const updateCart = () => {
     const cartContainer = document.getElementById('cart-container');
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -67,7 +63,6 @@ const updateCart = () => {
 
 updateCart();
 
-// Обробка оформлення замовлення
 const checkoutForm = document.getElementById('checkout-form');
 if (checkoutForm) {
     checkoutForm.addEventListener('submit', (event) => {
@@ -78,7 +73,7 @@ if (checkoutForm) {
         if (customerName && customerPhone) {
             alert(`Замовлення оформлено!\nІм'я: ${customerName}\nТелефон: ${customerPhone}`);
             checkoutForm.reset();
-            localStorage.removeItem('cartItems'); // Очистити кошик після оформлення
+            localStorage.removeItem('cartItems'); 
             updateCart();
         } else {
             alert('Будь ласка, заповніть всі поля!');
@@ -86,6 +81,4 @@ if (checkoutForm) {
     });
 }
 
-
-// Оновлення списку товарів при завантаженні сторінки
 document.addEventListener('DOMContentLoaded', updateCartList);

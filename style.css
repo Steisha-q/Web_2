@@ -412,7 +412,7 @@ footer {
 
 
 /* Мобільні стилі */
-@media (max-width: 768px) {
+@media (max-width: 768px ) {
     .navbar {
         flex-direction: column;
         gap: 10px;

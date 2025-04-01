@@ -3,14 +3,12 @@ let data = {
     products: JSON.parse(localStorage.getItem('products')) || []
 };
 
-// Завантаження даних при завантаженні сторінки
 const loadData = () => {
     updateCategorySelect();
     updateDeleteCategorySelect();
     updateProductList();
 };
 
-// Оновлення випадаючого списку для вибору категорії при додаванні товару
 const updateCategorySelect = () => {
     const categorySelect = document.getElementById('category-select');
     if (!categorySelect) return;
@@ -24,7 +22,6 @@ const updateCategorySelect = () => {
     });
 };
 
-// Оновлення випадаючого списку для видалення категорії
 const updateDeleteCategorySelect = () => {
     const categoryDeleteSelect = document.getElementById('category-delete-select');
     if (!categoryDeleteSelect) return;
@@ -38,7 +35,6 @@ const updateDeleteCategorySelect = () => {
     });
 };
 
-// Додавання нової категорії
 const categoryForm = document.getElementById('category-form');
 if (categoryForm) {
     categoryForm.addEventListener('submit', (event) => {
@@ -53,12 +49,11 @@ if (categoryForm) {
 
         localStorage.setItem('categories', JSON.stringify(data.categories));
         updateCategorySelect();
-        updateDeleteCategorySelect(); // Оновити список для видалення категорії
+        updateDeleteCategorySelect(); 
         categoryForm.reset();
     });
 }
 
-// Видалення категорії
 const deleteCategoryForm = document.getElementById('delete-category-form');
 if (deleteCategoryForm) {
     deleteCategoryForm.addEventListener('submit', (event) => {
@@ -67,13 +62,10 @@ if (deleteCategoryForm) {
 
         if (!categoryName) return;
 
-        // Видаляємо категорію з масиву
         data.categories = data.categories.filter(category => category.name !== categoryName);
         
-        // Оновлюємо localStorage
         localStorage.setItem('categories', JSON.stringify(data.categories));
 
-        // Оновлюємо списки категорій
         updateCategorySelect();
         updateDeleteCategorySelect();
 
@@ -81,7 +73,6 @@ if (deleteCategoryForm) {
     });
 }
 
-// Додавання нового товару
 const productForm = document.getElementById('product-form');
 if (productForm) {
     productForm.addEventListener('submit', (event) => {
@@ -114,34 +105,75 @@ if (productForm) {
     });
 }
 
-// Завантаження категорій на головній сторінці
 const loadCategoriesForMainPage = () => {
     const categoryList = document.getElementById('category-list');
     categoryList.innerHTML = '';
 
-    // Завантажуємо категорії з localStorage
     let categories = JSON.parse(localStorage.getItem('categories')) || [];
 
+    const allCategory = { name: 'Усі', id: 'all' };
+    categories.unshift(allCategory);
+
     if (categories.length > 0) {
-        displayCategories(categories); // Відображаємо категорії, якщо вони є в localStorage
+        displayCategories(categories);
     } else {
-        // Якщо категорії не знайдені в localStorage, виводимо повідомлення
         const noCategoriesMessage = document.createElement('li');
         noCategoriesMessage.textContent = 'Категорії не знайдено.';
         categoryList.appendChild(noCategoriesMessage);
     }
 
-    // Відображення категорій у списку
     function displayCategories(categories) {
         categories.forEach(category => {
             const listItem = document.createElement('li');
             listItem.textContent = category.name;
+            listItem.setAttribute('data-category', category.name); 
+            listItem.addEventListener('click', () => filterProducts(category.name)); 
             categoryList.appendChild(listItem);
         });
     }
 };
 
-// Завантаження категорій при завантаженні сторінки
+const filterProducts = (categoryName) => {
+    const productsContainer = document.getElementById('products-container');
+    if (!productsContainer) return;
+
+    productsContainer.innerHTML = '';
+
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    const filteredProducts = categoryName === 'Усі'
+        ? products
+        : products.filter(product => product.category === categoryName);
+
+    console.log('Відфільтровані товари:', filteredProducts);
+
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <p class="product-title">${product.name}</p>
+            <p class="product-price">${product.price} грн</p>
+            <p class="product-description">${product.description}</p>
+            <button class="add-to-cart">У кошик</button>
+        `;
+        const addToCartButton = productCard.querySelector('.add-to-cart');
+        addToCartButton.addEventListener('click', () => {
+            addToCart(product);
+            alert(`Товар "${product.name}" додано до кошика!`);
+        });
+
+        productsContainer.appendChild(productCard);
+    });
+
+    if (filteredProducts.length === 0) {
+        const noProductsMessage = document.createElement('p');
+        noProductsMessage.textContent = 'Немає товарів у цій категорії';
+        productsContainer.appendChild(noProductsMessage);
+    }
+};
+
+
 window.addEventListener('load', loadCategoriesForMainPage);
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -159,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Оновлення списку товарів на сторінці
 const updateProductList = () => {
     const productsContainer = document.getElementById('products-container');
     if (!productsContainer) return;
@@ -185,15 +216,14 @@ const updateProductList = () => {
     });
 };
 
-// Функція для додавання товару до кошика
 const addToCart = (product) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProduct = cart.find(item => item.id === product.id);
 
     if (existingProduct) {
-        existingProduct.quantity += 1; // Збільшуємо кількість, якщо товар вже є
+        existingProduct.quantity += 1; 
     } else {
-        product.quantity = 1; // Встановлюємо початкову кількість
+        product.quantity = 1;
         cart.push(product);
     }
 
@@ -201,5 +231,4 @@ const addToCart = (product) => {
     alert(`Товар "${product.name}" додано до кошика!`);
 };
 
-// Завантаження даних при завантаженні сторінки
 window.onload = loadData;

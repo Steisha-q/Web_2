@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let users = JSON.parse(localStorage.getItem("users")) || [];
 
-        // Перевірка, чи входить адміністратор
         if (email === "admin@gmail.com" && password === "admin") {
             localStorage.setItem("isAdmin", "true");
             localStorage.setItem("loggedInUser", email);
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Перевірка звичайного користувача
         const user = users.find(user => user.email === email);
 
         if (!user) {
@@ -28,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Збереження інформації про звичайного користувача
         localStorage.setItem("isAdmin", "false");
         localStorage.setItem("loggedInUser", email);
         alert("Вхід успішний!");
